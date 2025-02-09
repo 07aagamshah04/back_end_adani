@@ -126,7 +126,7 @@ async function generateQR(req, res) {
     } catch (error) {
       console.error("Error saving attendance:", error);
     }
-
+    console.log(uid);
     // Send back the UID to the frontend
     return res.status(200).json({
       success: true,
