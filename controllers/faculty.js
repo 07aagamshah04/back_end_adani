@@ -150,10 +150,10 @@ async function addAttendance(req, res) {
     );
     console.log("hello");
     // Step 2: Validate the timestamp (must be within 15 seconds)
-    const currentTime = Date.now();
-    if (currentTime - decodedTime > 10000) {
-      return res.status(400).json({ message: "QR code expired." });
-    }
+    // const currentTime = Date.now();
+    // if (currentTime - decodedTime > 10000) {
+    //   return res.status(400).json({ message: "QR code expired." });
+    // }
 
     // Step 2: Verify `id1` and fetch faculty data
     console.log(qrId1);
