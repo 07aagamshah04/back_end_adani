@@ -2,9 +2,8 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const cookieParser = require("cookie-parser");
-require("dotenv").config(); // Load environment variables
 
-const MONGO_URL = process.env.MONGO_URL; // Fetch MongoDB URL from environment variables
+const MONGO_URL = process.env.MONGO_URL; // Fetch MongoDB URL from Render
 const PORT = process.env.PORT || 5000; // Use Render's assigned port or default to 5000
 
 app.use(cookieParser());
