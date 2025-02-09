@@ -142,13 +142,13 @@ async function generateQR(req, res) {
 async function addAttendance(req, res) {
   try {
     const { qrId, qrId1, rollNumber } = req.body;
-
+    console.log("hi");
     // Step 1: Validate the `id` timestamp (current time - id <= 15 seconds)
     const decodedTime = parseInt(
       Buffer.from(qrId, "base64").toString("utf-8"),
       10
     );
-
+    console.log("hello");
     // Step 2: Validate the timestamp (must be within 15 seconds)
     const currentTime = Date.now();
     if (currentTime - decodedTime > 10000) {
