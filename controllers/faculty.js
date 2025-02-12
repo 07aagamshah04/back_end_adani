@@ -146,27 +146,30 @@ async function addAttendance(req, res) {
     console.log("Received request with QR ID1:", qrId1);
 
     // Step 1: Decode and validate the timestamp
-    let decodedTimeStr;
-    try {
-      decodedTimeStr = Buffer.from(qrId, "base64").toString("utf-8");
-      console.log("Decoded Time String:", decodedTimeStr);
-    } catch (error) {
-      console.error("Error decoding time:", error);
-      return res.status(400).json({ message: "Invalid QR code." });
-    }
+    // let decodedTimeStr;
+    // try {
+    //   decodedTimeStr = Buffer.from(qrId, "base64").toString("utf-8");
+    //   console.log("Decoded Time String:", decodedTimeStr);
+    // } catch (error) {
+    //   console.error("Error decoding time:", error);
+    //   return res.status(400).json({ message: "Invalid QR code." });
+    // }
 
-    // Step 2: Convert to number and validate
+    // // Step 2: Convert to number and validate
+    // const decodedTime = parseInt(decodedTimeStr, 10);
+    // if (isNaN(decodedTime)) {
+    //   return res.status(400).json({ message: "Invalid timestamp in QR code." });
+    // }
+
+    // const currentTime = Date.now();
+    const decodedTimeStr = Buffer.from(qrId, "base64").toString("utf-8");
     const decodedTime = parseInt(decodedTimeStr, 10);
-    if (isNaN(decodedTime)) {
-      return res.status(400).json({ message: "Invalid timestamp in QR code." });
-    }
-
     const currentTime = Date.now();
     console.log("Decoded Time:", decodedTime);
     console.log("Current Time:", currentTime);
     console.log("Time Difference (ms):", currentTime - decodedTime);
 
-    if (currentTime - decodedTime <= 10000) {
+    if (currentTime - decodedTime > 10000) {
       return res.status(400).json({ message: "QR code expired." });
     }
     const faculty = await Faculty.findOne({
