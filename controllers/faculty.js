@@ -169,7 +169,7 @@ async function addAttendance(req, res) {
     console.log("Current Time:", currentTime);
     console.log("Time Difference (ms):", currentTime - decodedTime);
 
-    if (currentTime - decodedTime > 10000) {
+    if (currentTime - decodedTime > 600000) {
       return res.status(400).json({ message: "QR code expired." });
     }
     const faculty = await Faculty.findOne({
