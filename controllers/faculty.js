@@ -128,10 +128,14 @@ async function generateQR(req, res) {
     }
     console.log(uid);
     // Send back the UID to the frontend
+
+    //changed one
+    const serverTimestamp = Date.now();
     return res.status(200).json({
       success: true,
       msg: "QR data generated and attendance updated successfully",
       uid,
+      timestamp: serverTimestamp,
     });
   } catch (error) {
     console.error("Error during QR generation:", error);
