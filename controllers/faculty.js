@@ -162,8 +162,8 @@ async function addAttendance(req, res) {
     // }
 
     // const currentTime = Date.now();
-    const decodedTimeStr = Buffer.from(qrId, "base64").toString("utf-8");
-    const decodedTime = parseInt(decodedTimeStr, 10);
+    // const decodedTimeStr = Buffer.from(qrId, "base64").toString("utf-8");
+    // const decodedTime = parseInt(decodedTimeStr, 10);
     const currentTime = Date.now();
     console.log("Decoded Time:", decodedTime);
     console.log("Current Time:", currentTime);
