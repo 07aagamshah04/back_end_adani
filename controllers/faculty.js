@@ -164,13 +164,38 @@ async function addAttendance(req, res) {
     // const currentTime = Date.now();
     // const decodedTimeStr = Buffer.from(qrId, "base64").toString("utf-8");
     // const decodedTime = parseInt(decodedTimeStr, 10);
-    const decodedTime = qrId;
+
+    //updated
+    // const decodedTime = qrId;
+    // const currentTime = Date.now();
+    // console.log("Decoded Time:", decodedTime);
+    // console.log("Current Time:", currentTime);
+    // console.log("Time Difference (ms):", currentTime - decodedTime);
+
+    // if (currentTime - decodedTime > 100000) {
+    //   return res.status(400).json({ message: "QR code expired." });
+    // }
+
+    //
+    const decodedTime = Number(qrId);
     const currentTime = Date.now();
-    console.log("Decoded Time:", decodedTime);
-    console.log("Current Time:", currentTime);
+
+    console.log(
+      "QR Generated Timestamp:",
+      decodedTime,
+      "->",
+      new Date(decodedTime).toLocaleString()
+    );
+    console.log(
+      "Attendance Request Timestamp:",
+      currentTime,
+      "->",
+      new Date(currentTime).toLocaleString()
+    );
     console.log("Time Difference (ms):", currentTime - decodedTime);
 
-    if (currentTime - decodedTime > 100000) {
+    // Allow attendance only if the QR was scanned within 10 seconds (10,000 ms).
+    if (currentTime - decodedTime > 10000) {
       return res.status(400).json({ message: "QR code expired." });
     }
     const faculty = await Faculty.findOne({
