@@ -199,7 +199,7 @@ async function addAttendance(req, res) {
     console.log("Time Difference (ms):", currentTime - decodedTime);
 
     // Allow attendance only if the QR was scanned within 10 seconds (10,000 ms).
-    if (currentTime - decodedTime > 10000) {
+    if (currentTime - decodedTime > 15000) {
       return res.status(400).json({ message: "QR code expired." });
     }
     const faculty = await Faculty.findOne({
